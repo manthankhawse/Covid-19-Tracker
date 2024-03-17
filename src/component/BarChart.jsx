@@ -1,26 +1,67 @@
-import React from 'react'
-import {Bar} from 'react-chartjs-2'
+import React from 'react';
+import {
+  Chart,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
 
+Chart.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
-function BarChart({chartData}) {
-    console.log(chartData);
-    let userGainData = [];
-    chartData.Data.filter((userData)=>userGainData.push({label:'Users',backgroundColor:['rgba(0, 0, 255, 0.5)'],data: userData,}))
-    console.log(userGainData)
+export const BarChart = ({ chartData }) => {
+
+  
   return (
-            <Bar
-        data={{
-          datasets: userGainData,
-        }}
-        options={{
-          legend: { display: true},
-          title: { display: true, text: `User data` },
-        }}
-      />
-        
-    
-    
-  )
-}
+    <div className="w-9/12 h-full mx-auto">
+            <div className='h-full'>
+                <Bar
+                    className='h-full'
+                    data={{
+                        labels: [''],
+                        datasets: [
+                            {
+                                label: "Deceased",
+                                data: [chartData.deceased],
+                                backgroundColor:'rgba(255, 99, 132, 0.5)',
+                            },
+                            {
+                              label: 'Confirmed',
+                              data: [chartData.confirmed],
+                              backgroundColor: 'rgba(53, 162, 235, 0.5)',
+                            },
+                            
+                            {
+                              label: 'Recovered',
+                              data: [chartData.recovered],
+                              backgroundColor: 'rgba(10, 241, 134, 0.5)',
+                            },
+                      
+                            
 
-export default BarChart
+                        ],
+                    }}
+                    height={400}
+                    options={{
+                        maintainAspectRatio: false,
+                        legend: {
+                            labels: {
+                                fontSize: 15,
+                            },
+                        },
+                    }}
+                />
+            </div>
+        </div>
+  );
+};

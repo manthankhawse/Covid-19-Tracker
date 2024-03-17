@@ -1,20 +1,22 @@
-import Chart from "chart.js/auto";
-import { CategoryScale } from "chart.js";
-import { useState } from "react";
-import { Data } from "./utils/Data";
-import BarChart from "./component/BarChart";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Homepage from "./pages/Homepage";
+import StateDaily from "./pages/StateDaily";
+import StateOverall from "./pages/StateOverall";
 
 
-Chart.register(CategoryScale);
- 
 export default function App() {
-  const [chartData, setChartData] = useState({
-    Data
-  });
- 
+  
+
   return (
-    <div className="App">
-      <BarChart chartData={chartData} />
-    </div>
-  )
+    <>
+    <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Homepage/>}/>
+          <Route path="/daily" element={<StateDaily/>}/>
+          <Route path="/overall" element={<StateOverall/>}/>
+        </Routes>
+    </BrowserRouter>
+    </>
+  );
 }
