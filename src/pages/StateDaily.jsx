@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Dropdown from '../component/Dropdown'
 import LineChart from '../component/LineChart'
+import BedInfo from '../component/BedInfo'
+import Signout from '../component/Signout'
+import EmergencyContacts from '../component/EmergencyContacts'
 
 function StateDaily() {
 
@@ -20,8 +23,10 @@ function StateDaily() {
 
   return (
     <>
-        <div className='flex justify-center items-center p-11'>
-            <div className='text-5xl font-poppins font-medium '>Daily Statewise data</div>
+
+        <div className='flex flex-col justify-center items-center'>
+            <Signout/>
+            <div className='text-5xl font-poppins font-medium p-11'>Daily Statewise data</div>
         </div>
         <div className='flex flex-col items-center justify-center'>
             <div className='flex justify-start w-full'>
@@ -31,6 +36,8 @@ function StateDaily() {
             <div className='w-9/12 mx-auto my-11'>
                 <LineChart chartData = {stateData}/>
             </div>
+            <BedInfo/>
+            <EmergencyContacts/>
         </div>
 
     </>
