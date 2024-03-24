@@ -9,12 +9,13 @@ import {
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
+import { useAuth } from '../contexts/AuthContext';
 
 
 function Login() {
 
     const navigate = useNavigate()
-    
+    const {setIsAuthenticated} = useAuth()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
@@ -26,6 +27,7 @@ function Login() {
           const user = userCredential.user;
           localStorage.setItem('token', user.accessToken);
           localStorage.setItem('user', JSON.stringify(user));
+          setIsAuthenticated(true);
           navigate("/");
         } catch (error) {
           console.error(error);

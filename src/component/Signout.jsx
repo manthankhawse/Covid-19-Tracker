@@ -3,10 +3,13 @@ import {signOut } from "firebase/auth";
 import { auth } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@material-tailwind/react';
+import { useAuth } from '../contexts/AuthContext';
 
 
 
 function Signout() {
+
+  const {setIsAuthenticated} = useAuth();
 
   const navigate = useNavigate();
   const handleLogout = async () => {
@@ -14,6 +17,7 @@ function Signout() {
       await signOut(auth);
       localStorage.removeItem('token');
       localStorage.removeItem('user');
+      setIsAuthenticated(false);
       console.log("signed out")
       navigate("/login");
     } catch (error) {
